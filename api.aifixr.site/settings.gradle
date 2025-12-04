@@ -2,12 +2,3 @@ rootProject.name = 'spring-server'
 
 // Gateway module
 include 'gateway'
-
-// Service modules
-include 'services'
-project(':services').projectDir = file('services')
-include 'services:common'
-include 'services:user'
-include 'services:environment'
-include 'services:social'
-include 'services:governance'

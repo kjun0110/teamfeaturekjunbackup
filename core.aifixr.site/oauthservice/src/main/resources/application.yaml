@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: oauthservice
+  
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/aifixrdb}
+    username: ${DATABASE_USER:aifixr}
+    password: ${DATABASE_PASSWORD:Aifixr0930!}
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+server:
+  port: 8080
+
+# OAuth 설정
+oauth:
+  kakao:
+    client-id: ${KAKAO_REST_API_KEY:${KAKAO_CLIENT_ID:}}
+    client-secret: ${KAKAO_CLIENT_SECRET:}
+    redirect-uri: ${KAKAO_REDIRECT_URI:http://localhost:8080/oauth/kakao/callback}
+    token-uri: https://kauth.kakao.com/oauth/token
+    user-info-uri: https://kapi.kakao.com/v2/user/me
+    authorize-uri: https://kauth.kakao.com/oauth/authorize
+
+# JWT 설정
+jwt:
+  secret: ${JWT_SECRET:your-secret-key-change-this-in-production-minimum-256-bits}
+  access-token-expiration: 3600000  # 1시간 (밀리초)
+  refresh-token-expiration: 604800000  # 7일 (밀리초)
+

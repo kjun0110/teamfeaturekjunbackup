@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { 
-  SidebarProvider, 
-  SidebarInset, 
-  SidebarTrigger 
+import {
+  SidebarProvider,
+  SidebarInset,
+  SidebarTrigger
 } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { TotalResultsView } from '@/components/TotalResultsView';
@@ -16,7 +16,7 @@ import type { MainTab, ResultsSubTab, InputSubTab, MonthlyESGData, CompanyESGDat
 const generateSampleCompanyData = (companyName: string): CompanyESGData[] => {
   const data: CompanyESGData[] = [];
   const now = new Date();
-  
+
   // 최신부터 20개월 데이터 생성 (페이지네이션 테스트용)
   for (let i = 0; i < 20; i++) {
     const date = new Date(now);
@@ -82,7 +82,7 @@ const generateSampleCompanyData = (companyName: string): CompanyESGData[] => {
 const generateSampleMonthlyData = (): MonthlyESGData[] => {
   const data: MonthlyESGData[] = [];
   const now = new Date();
-  
+
   // 고정된 시드 기반 점수 (일관성 유지)
   const scores = [
     { overall: 87.5, e: 85, s: 87, g: 91 },
@@ -98,13 +98,13 @@ const generateSampleMonthlyData = (): MonthlyESGData[] => {
     { overall: 73.8, e: 74, s: 72, g: 75 },
     { overall: 86.4, e: 85, s: 87, g: 87 },
   ];
-  
+
   for (let i = 11; i >= 0; i--) {
     const date = new Date(now);
     date.setMonth(date.getMonth() - i);
     const month = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
     const scoreData = scores[11 - i];
-    
+
     const overallScore = scoreData.overall;
     let grade = '';
     if (overallScore >= 90) grade = 'A+';
@@ -116,7 +116,7 @@ const generateSampleMonthlyData = (): MonthlyESGData[] => {
     else if (overallScore >= 60) grade = 'D+';
     else if (overallScore >= 55) grade = 'D';
     else grade = 'F';
-    
+
     data.push({
       id: `month-${i}`,
       month,
@@ -127,7 +127,7 @@ const generateSampleMonthlyData = (): MonthlyESGData[] => {
       grade,
     });
   }
-  
+
   return data;
 };
 
@@ -192,7 +192,7 @@ export function AutomatedReportView() {
       }
       return <div>준비 중입니다...</div>;
     }
-    
+
     return <div>준비 중입니다...</div>;
   };
 
@@ -234,4 +234,3 @@ export function AutomatedReportView() {
     </SidebarProvider>
   );
 }
-

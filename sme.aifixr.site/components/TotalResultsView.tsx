@@ -79,7 +79,7 @@ export function TotalResultsView({ companyData, companyName, standard: propStand
   const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
   const [internalStandard, setInternalStandard] = useState<'K-ESG' | 'ESRS'>('K-ESG');
   const itemsPerPage = 15;
-  
+
   // propStandard가 있으면 사용하고, 없으면 내부 상태 사용
   const standard = propStandard ?? internalStandard;
   const setStandard = onStandardChange ?? setInternalStandard;
@@ -153,8 +153,8 @@ export function TotalResultsView({ companyData, companyName, standard: propStand
         </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3 bg-white border border-aifix-secondary-light rounded-lg px-4 py-2.5 shadow-sm">
-            <Label 
-              htmlFor="standard-toggle" 
+            <Label
+              htmlFor="standard-toggle"
               className="text-sm font-medium text-aifix-secondary cursor-pointer"
             >
               {standard === 'ESRS' ? 'ESRS' : 'K-ESG'}
@@ -406,4 +406,3 @@ export function TotalResultsView({ companyData, companyName, standard: propStand
     </div>
   );
 }
-

@@ -4,15 +4,24 @@ interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
   onLogin: () => void;
+  onKakaoLogin?: () => void;
 }
 
-export default function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
+export default function LoginModal({ isOpen, onClose, onLogin, onKakaoLogin }: LoginModalProps) {
   if (!isOpen) return null;
+
+  const handleKakaoClick = () => {
+    if (onKakaoLogin) {
+      onKakaoLogin();
+    } else {
+      onLogin(); // fallback to default behavior
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
       {/* Backdrop */}
-      <div 
+      <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
@@ -47,7 +56,7 @@ export default function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps
         {/* Social Login Buttons */}
         <div className="flex flex-col gap-3">
           <button
-            onClick={onLogin}
+            onClick={handleKakaoClick}
             className="w-full px-6 py-3 rounded-xl bg-[#FEE500] text-[#000000] hover:bg-[#FDD835] hover:shadow-lg transition-all font-medium"
           >
             카카오 로그인하기

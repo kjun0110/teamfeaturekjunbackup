@@ -65,14 +65,6 @@ export default function AIFIXRPanel({ isOpen, onClose }: AIFIXRPanelProps) {
 
   return (
     <>
-      {/* Backdrop */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300"
-          onClick={onClose}
-        />
-      )}
-      
       {/* Sidebar Panel */}
       <div
         className={`fixed top-0 right-0 h-screen z-50 w-[500px] transition-all duration-300 ${

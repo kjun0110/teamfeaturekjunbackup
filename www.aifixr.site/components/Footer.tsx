@@ -2,9 +2,10 @@ import { Sparkles, Youtube, Instagram, Linkedin } from 'lucide-react';
 
 export default function Footer() {
   const footerLinks = [
-    { id: 'privacy', label: '개인정보처리방침' },
-    { id: 'terms', label: '이용약관' },
-    { id: 'support', label: '고객센터' },
+    { id: 'privacy', label: '개인정보처리방침', href: '#' },
+    { id: 'terms', label: '이용약관', href: '#' },
+    { id: 'support', label: '고객센터', href: '#' },
+    { id: 'admin', label: '관리자', href: 'http://localhost:3001' },
   ];
 
   return (
@@ -27,12 +28,15 @@ export default function Footer() {
             {/* Footer Links */}
             <nav className="flex items-center gap-6 flex-wrap justify-center">
               {footerLinks.map((link) => (
-                <button
+                <a
                   key={link.id}
+                  href={link.href}
+                  target={link.id === 'admin' ? '_blank' : undefined}
+                  rel={link.id === 'admin' ? 'noopener noreferrer' : undefined}
                   className="text-white/70 hover:text-white transition-colors text-sm"
                 >
                   {link.label}
-                </button>
+                </a>
               ))}
             </nav>
 

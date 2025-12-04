@@ -1,4 +1,4 @@
-import { Bot } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import AIFIXRPanel from './AIFIXRPanel';
 
@@ -11,19 +11,16 @@ export default function FloatingAIButton() {
       <div className="fixed top-24 right-8 z-50">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className={`relative w-16 h-16 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#0D4ABB] flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 ${
+          className={`relative px-6 py-3 rounded-full bg-gradient-to-r from-[#00D4FF] to-[#0D4ABB] flex items-center gap-2 shadow-2xl hover:scale-105 transition-all duration-300 ${
             isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
           style={{
-            animation: isExpanded ? 'none' : 'glow 2s ease-in-out infinite',
-            boxShadow: '0 0 30px rgba(0, 212, 255, 0.5)'
+            boxShadow: '0 4px 20px rgba(0, 212, 255, 0.4)'
           }}
           aria-label="AIFIXR Assistant"
         >
-          <Bot className="w-8 h-8 text-white" />
-          
-          {/* Pulse Ring */}
-          <div className="absolute inset-0 rounded-full bg-[#00D4FF] opacity-20 animate-ping" />
+          <Sparkles className="w-5 h-5 text-white" />
+          <span className="text-white font-semibold text-sm whitespace-nowrap">AIFIXR Assistant</span>
         </button>
       </div>
 

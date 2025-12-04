@@ -7,7 +7,8 @@ COPY gradle gradle
 COPY build.gradle settings.gradle ./
 COPY gateway gateway
 RUN chmod +x ./gradlew
-RUN ./gradlew :gateway:bootJar --no-daemon
+# Retry Gradle build up to 3 times in case of network issues
+RUN for i in 1 2 3; do ./gradlew :gateway:bootJar --no-daemon && break || sleep 5; done
 
 # Runtime stage
 FROM eclipse-temurin:21-jdk-alpine

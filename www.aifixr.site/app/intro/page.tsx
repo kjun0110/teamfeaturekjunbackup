@@ -6,23 +6,14 @@ import Header from '@/components/Header';
 import MainNavigation from '@/components/MainNavigation';
 import Footer from '@/components/Footer';
 import LoginModal from '@/components/LoginModal';
+import { createMainHandlers } from '@/services/mainservice';
 
 export default function IntroPage() {
   const [activeMainTab, setActiveMainTab] = useState('intro');
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-  const handleLoginClick = () => {
-    setIsLoginModalOpen(true);
-  };
-
-  const handleLoginRequired = () => {
-    setIsLoginModalOpen(true);
-  };
-
-  const handleLogin = () => {
-    console.log('Login action triggered');
-    setIsLoginModalOpen(false);
-  };
+  const { handleLoginClick, handleLoginRequired, handleLogin, handleKakaoLogin } =
+    createMainHandlers(setIsLoginModalOpen);
 
   const handleStartDiagnosis = () => {
     // ESG 진단 시작 로직
@@ -32,12 +23,12 @@ export default function IntroPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <Header 
+      <Header
         onLoginClick={handleLoginClick}
       />
 
       {/* Main Navigation */}
-      <MainNavigation 
+      <MainNavigation
         activeTab={activeMainTab}
         setActiveTab={setActiveMainTab}
         onLoginRequired={handleLoginRequired}
@@ -68,7 +59,7 @@ export default function IntroPage() {
           <h2 className="text-4xl font-bold text-center text-[#0D4ABB] mb-12" style={{ fontFamily: 'Inter Tight, Arial, sans-serif' }}>
             핵심 기능 (3 Pillars)
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {/* Pillar 1 */}
             <div className="p-8 rounded-2xl bg-gradient-to-br from-[#0D4ABB]/10 to-[#00D4FF]/10 border border-[#0D4ABB]/20 hover:shadow-xl transition-all">
@@ -289,10 +280,11 @@ export default function IntroPage() {
       <Footer />
 
       {/* Login Modal */}
-      <LoginModal 
+      <LoginModal
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
         onLogin={handleLogin}
+        onKakaoLogin={handleKakaoLogin}
       />
     </div>
   );
